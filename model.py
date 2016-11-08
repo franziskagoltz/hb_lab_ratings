@@ -31,6 +31,8 @@ class User(db.Model):
     def calculate_pearson(self, user2):
         """Calculates pearson similarity between two users"""
 
+        print "calculating pearson for", user2
+
         user_ratings = {}
 
         paired_ratings = []
@@ -42,8 +44,10 @@ class User(db.Model):
             user_score = user_ratings.get(r2.movie_id)
 
             if user_score is not None:
+                print "Found a match!"
                 paired_ratings.append((user_score, r2.score))
 
+        print paired_ratings
         return correlation.pearson(paired_ratings)
 
     def predict_rating(self, movie):

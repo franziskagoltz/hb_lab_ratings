@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h2>Information for movie: {{ movie.title}} </h2>
+
+    <p id="released_at">Release Date: {{ movie.released_at }} </p>
+
+    {% if 'user_id' in session %} 
+
+      <form action="/score-a-movie" method="POST">
+        <label>Rate this movie! Score it between 1 and 5 (1 is lowest, 5 is highest)</label>
+        <br>
+        <input type="number"  min="1" max="5" name="score">
+        <input type="hidden" name='movie_id' value="{{ movie.movie_id }}">
+        <input type="submit" value="Score now!">
+      </form>
+    {% endif %}
+
+    <p id="ratings">Ratings: </p>
+            <ul>
+      {% for rating in movie.ratings %}
+          <li>
+
+            User ID: {{ rating.user.user_id }}<br>
+            Score: ({{ rating.score }}) <br>
+            <br>
+
+          </li>
+      {% endfor %}
+    </ul>
+
+
+
+{% endblock %}

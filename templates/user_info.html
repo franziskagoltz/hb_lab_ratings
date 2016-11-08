@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <button id="movies"><a href="/movies">Check out the movies!</a></button>
+
+    <h2>Information for User number: {{ user.user_id}} </h2>
+
+    <p id="age">Age: {{ user.age }} </p>
+    
+    <p id="zipcode">Zipcode: {{ user.zipcode }} </p>
+
+    <p id="ratings">Ratings: </p>
+            <ul>
+      {% for rating in user.ratings %}
+          <li>
+
+            Movie ID: {{ rating.movie_id }}<br>
+            Movie Title: {{ rating.movie.title }}<br>
+            Score: ({{ rating.score }}) <br>
+            <br>
+
+          </li>
+      {% endfor %}
+    </ul>
+
+    <ul>
+  
+    </ul>
+
+{% endblock %}
